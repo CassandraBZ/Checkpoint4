@@ -6,6 +6,7 @@ import RoundButton from "../components/Buttons/RoundButton";
 
 import bullets from "../assets/images/bullets.svg";
 import create from "../assets/icons/addition_white.svg";
+import NotesList from "../components/NotesList";
 
 function Accueil() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function Accueil() {
           handleClick={handleCreateNote}
         />
       </div>
+      <NotesList />
     </div>
   );
 }
