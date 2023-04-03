@@ -135,6 +135,8 @@ CREATE TABLE `note` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `checkpoint`.`note` (`id`, `note_title`, `content`, `user_id`, `color_id`) VALUES ('1', 'Ne pas oublier', 'Sauver le district 12, faire les vitres, donner à manger au chat, regarder dans le vide pendant 2h, faire du sport, penser à son existence', '1', '1');
+
 --
 -- Dumping data for table `note`
 --

@@ -19,4 +19,12 @@ const avatarControllers = require("./controllers/avatarControllers");
 router.get("/avatars", avatarControllers.browse);
 router.get("/avatars/:id", avatarControllers.read);
 
+const noteControllers = require("./controllers/noteControllers");
+
+router.get("/notes", auth, noteControllers.browse);
+router.get("/notes/:id", auth, noteControllers.read);
+router.post("/notes", auth, noteControllers.add);
+router.put("/notes/:id", auth, noteControllers.edit);
+router.delete("/notes/:id", auth, noteControllers.destroy);
+
 module.exports = router;

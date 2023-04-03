@@ -32,13 +32,16 @@ const models = {};
 const ItemManager = require("./ItemManager");
 const UserManager = require("./UserManager");
 const AvatarManager = require("./AvatarManager");
+const NoteManager = require("./NoteManager");
 
 models.item = new ItemManager();
 models.user = new UserManager();
 models.avatar = new AvatarManager();
+models.note = new NoteManager();
 
 models.user.setDatabase(pool);
 models.avatar.setDatabase(pool);
+models.note.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
