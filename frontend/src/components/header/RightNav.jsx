@@ -35,7 +35,7 @@ function RightNav() {
         </div>
       ) : (
         <div className=" bg-main-light rounded-full p-2">
-          <Link to="/Connexion">
+          <Link to="/">
             <img src={login} alt="log-in" className="w-7 md:w-6" />
           </Link>
         </div>

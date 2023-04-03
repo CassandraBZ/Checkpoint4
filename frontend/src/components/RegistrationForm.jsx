@@ -84,7 +84,7 @@ function RegistrationForm() {
       <div className="flex flex-row text-left">
         <p className="text-grey1 text-s pr-4">J'ai déjà un compte ?</p>
         <Link
-          to="/Connexion"
+          to="/"
           className="text-main-light font-semibold text-sm underline decoration-2 decoration-main-light"
         >
           Me connecter

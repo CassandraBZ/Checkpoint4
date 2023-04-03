@@ -12,7 +12,7 @@ import bullets from "../assets/images/bullets.svg";
 
 function ConnexionForm() {
   const navigate = useNavigate();
-  const { user, setUser } = useCurrentUserContext();
+  const { setUser } = useCurrentUserContext();
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -26,6 +26,7 @@ function ConnexionForm() {
       expressAPI
         .post("/login", { email, hashed_password: password })
         .then((res) => {
+          const user = { ...res.data.user };
           setUser(res.data.user);
           localStorage.setItem("user", JSON.stringify(user));
           navigate("/Accueil");
