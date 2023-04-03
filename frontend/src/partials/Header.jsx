@@ -3,7 +3,7 @@ import Logo from "../components/header/Logo";
 
 function Header() {
   return (
-    <header className="flex flex-row justify-between items-center">
+    <header className="flex flex-row justify-between items-center mt-1">
       <div className="mx-4">
         <Logo />
       </div>
