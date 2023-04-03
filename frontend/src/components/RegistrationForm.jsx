@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { toastError } from "../services/toastService";
+import { toastError, toastValidation } from "../services/toastService";
 import expressAPI from "../services/expressAPI";
 
 import Input from "./Input";
@@ -15,35 +15,45 @@ function RegistrationForm() {
   const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const [avatar, setAvatar] = useState(1);
+  const [avatars, setAvatars] = useState([]);
+  const [selectedAvatar, setSelectedAvatar] = useState();
 
   const handlePseudoChange = (e) => setPseudo(e.target.value);
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
   const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleAvatar = (avatar) => setSelectedAvatar(avatar);
 
   const handleForm = (e) => {
     e.preventDefault();
 
-    if ((email, password, pseudo)) {
+    if ((email, password, pseudo, selectedAvatar)) {
       expressAPI
-        .post("/users", { pseudo, email, hashed_password: password })
-        .then(() => navigate("/Connexion"))
+        .post("/users", {
+          pseudo,
+          email,
+          hashed_password: password,
+          avatar_id: selectedAvatar.id,
+        })
+        .then(() => {
+          toastValidation("Votre compte a bien été créé");
+          navigate("/");
+        })
         .catch((err) => console.error(err));
     } else {
       toastError("Veuillez renseigner votre email et votre statut");
     }
   };
 
-  //   useEffect(() => {
-  //     expressAPI
-  //       .get("/avatars")
-  //       .then((res) => setAvatar(res.data))
-  //       .catch((err) => {
-  //         console.error(err);
-  //       });
-  //   }, []);
+  useEffect(() => {
+    expressAPI
+      .get("/avatars")
+      .then((res) => setAvatars(res.data))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -52,6 +62,24 @@ function RegistrationForm() {
           Inscrivez vous sur notes
         </h1>
         <img src={bullets} alt="bullet-color" />
+      </div>
+      <div className="flex flex-wrap flex-row gap-2 m-10">
+        {avatars.map((avatar) => (
+          <img
+            key={avatar.id}
+            className={`w-14 h-14 ${
+              selectedAvatar && selectedAvatar.id === avatar.id
+                ? "border-2"
+                : ""
+            }`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
+              avatar.image
+            }`}
+            alt="avatars"
+            onClick={() => handleAvatar(avatar)}
+            aria-hidden="true"
+          />
+        ))}
       </div>
       <div className="flex flex-row text-left">
         <p className="text-grey1 text-s pr-4">J'ai déjà un compte ?</p>
