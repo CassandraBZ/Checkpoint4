@@ -36,6 +36,15 @@ function RegistrationForm() {
     }
   };
 
+  //   useEffect(() => {
+  //     expressAPI
+  //       .get("/avatars")
+  //       .then((res) => setAvatar(res.data))
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }, []);
+
   return (
     <div>
       <div className="">
