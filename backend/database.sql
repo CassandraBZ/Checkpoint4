@@ -162,6 +162,8 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_user_avatar` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `checkpoint`.`user` (`id`, `pseudo`, `email`, `hashed_password`, `avatar_id`) VALUES ('1', 'katniss', 'katnissEverdeen@gmail.fr', '$argon2id$v=19$m=65536,t=5,p=1$5mszkLJH9zHLU8/Q61dkqw$tqeLaz7XEchc07scumrBvDoZ7WLIR/WJ+iMMjX89APk', '1');
+
 
 --
 -- Dumping data for table `user`
