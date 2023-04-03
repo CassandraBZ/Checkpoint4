@@ -30,7 +30,7 @@ function RightNav() {
             onClick={handleDisconnection}
             className="w-fit rounded-full p-3"
           >
-            <img src={logout} alt="log-out" className="w-8 md:w-6" />
+            <img src={logout} alt="log-out" className="w-7 md:w-6" />
           </button>
         </div>
       ) : (
