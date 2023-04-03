@@ -89,10 +89,15 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  res.clearCookie("auth_token").sendStatus(200);
+};
+
 module.exports = {
   browse,
   read,
   add,
   destroy,
   login,
+  logout,
 };
