@@ -5,10 +5,10 @@ const router = express.Router();
 const userControllers = require("./controllers/userControllers");
 const auth = require("./middlewares/auth");
 
-router.get("/user", auth, userControllers.browse);
-router.get("/user/:id", userControllers.read);
-router.post("/user", userControllers.add);
-router.delete("/user/:id", userControllers.destroy);
+router.get("/users", auth, userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.post("/users", userControllers.add);
+router.delete("/users/:id", userControllers.destroy);
 
 router.post("/login", userControllers.login);
 router.get("/logout", userControllers.logout);

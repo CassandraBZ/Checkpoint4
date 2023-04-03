@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
 
-import LogoNotes from "../assets/images/logo_note.svg";
+import LogoNotes from "../../assets/images/logo_note.svg";
 
 function Logo() {
   const { user } = useCurrentUserContext();

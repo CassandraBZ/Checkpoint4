@@ -1,38 +1,38 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 
-import expressAPI from "../services/expressAPI";
 import { toastError } from "../services/toastService";
+import expressAPI from "../services/expressAPI";
 
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
-import MainButton from "./Buttons/MainButton";
 import Input from "./Input";
+import MainButton from "./Buttons/MainButton";
 
 import bullets from "../assets/images/bullets.svg";
 
-function ConnexionForm() {
+function RegistrationForm() {
   const navigate = useNavigate();
-  const { user, setUser } = useCurrentUserContext();
 
-  const [password, setPassword] = useState("");
+  const [pseudo, setPseudo] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //   const [avatar, setAvatar] = useState(1);
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePseudoChange = (e) => setPseudo(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleForm = (e) => {
     e.preventDefault();
-    if (email && password) {
+
+    if ((email, password, pseudo)) {
       expressAPI
-        .post("/login", { email, hashed_password: password })
-        .then((res) => {
-          setUser(res.data.user);
-          localStorage.setItem("user", JSON.stringify(user));
-          navigate("/Accueil");
-        })
-        .catch(() => toastError("Le mot de passe ou l'email est incorrect"));
+        .post("/users", { pseudo, email, hashed_password: password })
+        .then(() => navigate("/Connexion"))
+        .catch((err) => console.error(err));
     } else {
-      toastError("Veuillez renseigner un email et un mot de passe");
+      toastError("Veuillez renseigner votre email et votre statut");
     }
   };
 
@@ -40,20 +40,31 @@ function ConnexionForm() {
     <div>
       <div className="">
         <h1 className="font-lilita text-main text-3xl">
-          Connectez vous sur notes
+          Inscrivez vous sur notes
         </h1>
         <img src={bullets} alt="bullet-color" />
       </div>
       <div className="flex flex-row text-left">
-        <p className="text-grey1 text-s pr-4">Je n'ai pas de compte ?</p>
+        <p className="text-grey1 text-s pr-4">J'ai déjà un compte ?</p>
         <Link
-          to="/Registration"
+          to="/Connexion"
           className="text-main-light font-semibold text-sm underline decoration-2 decoration-main-light"
         >
-          M'inscrire
+          Me connecter
         </Link>
       </div>
       <form className="flex flex-col text-left mt-5 mb-6">
+        <div className="mb-5 flex flex-col">
+          <label htmlFor="firstname" className="text-grey1 font-semibold mb-1">
+            Pseudo
+          </label>
+          <Input
+            inputType="pseudo"
+            inputId="pseudo"
+            value={pseudo}
+            handleChange={handlePseudoChange}
+          />
+        </div>
         <div className="mb-5 flex flex-col">
           <label htmlFor="email" className="text-grey1 font-semibold mb-1">
             Adresse mail
@@ -76,10 +87,10 @@ function ConnexionForm() {
             handleChange={handlePasswordChange}
           />
         </div>
-        <MainButton handleClick={handleSubmit}>Me connecter</MainButton>
+        <MainButton handleClick={handleForm}>Me connecter</MainButton>
       </form>
     </div>
   );
 }
 
-export default ConnexionForm;
+export default RegistrationForm;

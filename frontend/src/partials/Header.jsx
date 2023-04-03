@@ -1,5 +1,5 @@
-import RightNav from "../components/RightNav";
-import Logo from "../components/Logo";
+import RightNav from "../components/header/RightNav";
+import Logo from "../components/header/Logo";
 
 function Header() {
   return (

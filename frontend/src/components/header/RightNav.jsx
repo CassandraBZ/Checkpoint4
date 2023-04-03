@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
 
-import login from "../assets/icons/log-in-white.svg";
-import logout from "../assets/icons/log-out-white.svg";
+import login from "../../assets/icons/log-in-white.svg";
+import logout from "../../assets/icons/log-out-white.svg";
 
-import expressAPI from "../services/expressAPI";
+import expressAPI from "../../services/expressAPI";
 
 function RightNav() {
   const { user, setUser } = useCurrentUserContext();
