@@ -19,6 +19,11 @@ const avatarControllers = require("./controllers/avatarControllers");
 router.get("/avatars", avatarControllers.browse);
 router.get("/avatars/:id", avatarControllers.read);
 
+const colorControllers = require("./controllers/colorControllers");
+
+router.get("/colors", colorControllers.browse);
+router.get("/colors/:id", colorControllers.read);
+
 const noteControllers = require("./controllers/noteControllers");
 
 router.get("/notes", auth, noteControllers.browse);
