@@ -5,6 +5,13 @@ class NoteManager extends AbstractManager {
     super({ table: "note" });
   }
 
+  findByUserId(userId) {
+    return this.database.query(
+      `select * from  ${this.table} where user_id = ?`,
+      [userId]
+    );
+  }
+
   find(id) {
     return this.database.query(`select * from  ${this.table} where id = ?`, [
       id,

@@ -12,6 +12,22 @@ const browse = (req, res) => {
     });
 };
 
+const readFromUser = (req, res) => {
+  models.note
+    .findByUserId(req.params.userId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const read = (req, res) => {
   models.note
     .find(req.params.id)
@@ -84,4 +100,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  readFromUser,
 };
