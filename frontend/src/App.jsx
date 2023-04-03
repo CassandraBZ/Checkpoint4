@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 import Connexion from "./pages/Connexion";
 import Accueil from "./pages/Accueil";
-import MainLayout from "./assets/layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
