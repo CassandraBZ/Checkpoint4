@@ -1,10 +1,17 @@
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import Home from "./pages/Home";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <ToastContainer />
     </div>
   );
 }
