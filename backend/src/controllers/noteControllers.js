@@ -54,24 +54,24 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
-  const note = req.body;
+const edit = async (req, res) => {
+  try {
+    const note = req.body;
 
-  note.id = parseInt(req.params.id, 10);
+    note.id = parseInt(req.params.id, 10);
 
-  models.note
-    .update(note)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+    await models.note.updateCategory(note.category_id, note.id);
+    const [result] = await models.note.update(note);
+
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 const add = async (req, res) => {

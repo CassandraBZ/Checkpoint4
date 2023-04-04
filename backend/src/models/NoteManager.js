@@ -53,6 +53,13 @@ class NoteManager extends AbstractManager {
     );
   }
 
+  updateCategory(categoryId, noteId) {
+    return this.database.query(
+      `UPDATE category_has_note SET category_id = ?  WHERE note_id = ? AND category_id <> 1`,
+      [categoryId, noteId]
+    );
+  }
+
   delete(id) {
     return this.database.query(`delete from ${this.table} where id = ?`, [id]);
   }
