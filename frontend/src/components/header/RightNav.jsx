@@ -30,7 +30,7 @@ function RightNav() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [user]);
 
   return (
     <div className="flex mx-5">

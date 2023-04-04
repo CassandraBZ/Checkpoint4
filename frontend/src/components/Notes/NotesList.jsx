@@ -28,8 +28,7 @@ function NotesList({ notes }) {
 }
 
 NotesList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  notes: PropTypes.array({
+  notes: PropTypes.arrayOf({
     id: PropTypes.number,
     note_title: PropTypes.string,
     content: PropTypes.string,
