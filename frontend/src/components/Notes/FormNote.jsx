@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import MainButton from "../Buttons/MainButton";
 import SecondaryButton from "../Buttons/SecondaryButton";
 
+import trash from "../../assets/icons/trash.svg";
+
 import expressAPI from "../../services/expressAPI";
 import { toastError, toastValidation } from "../../services/toastService";
 import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -74,6 +76,18 @@ function FormNote({ isEditMode, note, color, category }) {
     }
   };
 
+  const handleDelete = () => {
+    expressAPI
+      .delete(`/notes/${id}`)
+      .then(() => {
+        toastValidation("Votre note a bien été supprimée");
+        navigate("/Accueil");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     setColorSelected(color);
   }, [color]);
@@ -134,19 +148,31 @@ function FormNote({ isEditMode, note, color, category }) {
           />
         </form>
       </div>
-      <div className="flex flex-row justify-end">
-        {colors &&
-          colors.map((c) => (
-            <div
-              key={c.id}
-              className={`h-8 w-8 rounded-full mb-5 ml-2 ${
-                colorSelected && colorSelected.id === c.id ? "border-2" : ""
-              }`}
-              style={{ backgroundColor: c.name }}
-              onClick={() => handleColorSelectedChange(c)}
-              aria-hidden="true"
-            />
-          ))}
+      <div className="flex flex-row mb-5 items-center justify-between">
+        <div>
+          {isEditMode && (
+            <button type="button" onClick={handleDelete}>
+              <img src={trash} alt="trash icon" className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+        <div className="flex flex-row items-center text-gray2 font-semibold justify-end ">
+          Couleurs
+          {colors &&
+            colors.map((c) => (
+              <button
+                type="button"
+                key={c.id}
+                className={`h-8 w-8 rounded-full ml-2 ${
+                  colorSelected && colorSelected.id === c.id ? "border-2" : ""
+                }`}
+                style={{ backgroundColor: c.name }}
+                onClick={() => handleColorSelectedChange(c)}
+                aria-label={c.name}
+                title={c.name}
+              />
+            ))}
+        </div>
       </div>
       <MainButton handleClick={handleSubmit}>
         {" "}

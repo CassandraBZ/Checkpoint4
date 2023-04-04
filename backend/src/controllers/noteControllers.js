@@ -74,20 +74,21 @@ const add = async (req, res) => {
   }
 };
 
-const destroy = (req, res) => {
-  models.note
-    .delete(req.params.id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+const destroy = async (req, res) => {
+  try {
+    const noteId = req.params.id;
+    await models.note.deleteCategory(noteId);
+
+    const [result] = await models.note.delete(req.params.id);
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 module.exports = {

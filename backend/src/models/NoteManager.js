@@ -46,6 +46,13 @@ class NoteManager extends AbstractManager {
   delete(id) {
     return this.database.query(`delete from ${this.table} where id = ?`, [id]);
   }
+
+  deleteCategory(id) {
+    return this.database.query(
+      `delete from category_has_note where note_id = ?`,
+      [id]
+    );
+  }
 }
 
 module.exports = NoteManager;

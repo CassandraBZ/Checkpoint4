@@ -18,7 +18,7 @@ function Note({ title, content, colorId, noteId }) {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center cursor-pointer">
       {color && (
         <div
           onClick={() => navigate(`/edit-note/${noteId}`)}
