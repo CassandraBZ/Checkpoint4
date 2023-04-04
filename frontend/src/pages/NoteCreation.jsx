@@ -1,9 +1,9 @@
-import FormCreationNote from "../components/Notes/FormCreationNote";
+import FormNote from "../components/Notes/FormNote";
 
 function NoteCreation() {
   return (
     <div>
-      <FormCreationNote />
+      <FormNote />
     </div>
   );
 }

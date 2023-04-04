@@ -8,6 +8,7 @@ import Accueil from "./pages/Accueil";
 import MainLayout from "./layouts/MainLayout";
 import Registration from "./pages/Registration";
 import NoteCreation from "./pages/NoteCreation";
+import NoteEdit from "./pages/NoteEdit";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Registration" element={<Registration />} />
           <Route path="/Accueil" element={<Accueil />} />
           <Route path="/creation-note" element={<NoteCreation />} />
+          <Route path="/edit-note/:id" element={<NoteEdit />} />
         </Route>
       </Routes>
       <ToastContainer />
