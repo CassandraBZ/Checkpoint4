@@ -62,6 +62,7 @@ LOCK TABLES `category` WRITE;
 INSERT INTO `category` VALUES (1,'Tout');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
+INSERT INTO `checkpoint`.`category` (`id`, `category_title`) VALUES ('2', 'A faire');
 
 --
 -- Table structure for table `category_has_note`
@@ -80,6 +81,7 @@ CREATE TABLE `category_has_note` (
   CONSTRAINT `fk_category_has_note_note1` FOREIGN KEY (`note_id`) REFERENCES `note` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `checkpoint`.`category_has_note` (`category_id`, `note_id`) VALUES ('1', '1');
 
 --
 -- Dumping data for table `category_has_note`
@@ -135,6 +137,9 @@ CREATE TABLE `note` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `checkpoint`.`note` (`id`, `note_title`, `content`, `user_id`, `color_id`) VALUES ('1', 'Ne pas oublier', 'Sauver le district 12, faire les vitres, donner à manger au chat, regarder dans le vide pendant 2h, faire du sport, penser à son existence', '1', '1');
+INSERT INTO `checkpoint`.`note` (`id`, `note_title`, `content`, `user_id`, `color_id`) VALUES ('2', 'Chose à prendre', 'Des rations de survie, des chaussettes de rechange, un pull, un couteau (pour la chasse bien entendu), eau, une veste anti-choc, des chaussures de rando', '1', '3');
+
 --
 -- Dumping data for table `note`
 --
@@ -162,6 +167,8 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_user_avatar` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `checkpoint`.`user` (`id`, `pseudo`, `email`, `hashed_password`, `avatar_id`) VALUES ('1', 'katniss', 'katnissEverdeen@gmail.fr', '$argon2id$v=19$m=65536,t=5,p=1$5mszkLJH9zHLU8/Q61dkqw$tqeLaz7XEchc07scumrBvDoZ7WLIR/WJ+iMMjX89APk', '1');
+
 
 --
 -- Dumping data for table `user`
