@@ -7,7 +7,7 @@ function MainLayout() {
   return (
     <div>
       <Header />
-      <div className="min-h-[calc(100vh_-_95px_-_56px)]">
+      <div className="min-h-[calc(100vh_-_64px_-_56px)] md:min-h-[calc(100vh_-_72px_-_56px)]">
         <Outlet />
       </div>
       <Footer />

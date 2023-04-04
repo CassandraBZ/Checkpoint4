@@ -6,7 +6,7 @@ import LogoNotes from "../../assets/images/logo_note.svg";
 function Logo() {
   const { user } = useCurrentUserContext();
   return (
-    <div>
+    <div className="w-2/3 md:w-3/4">
       {user ? (
         <Link to="/Accueil" alt="logo_link">
           <img src={LogoNotes} alt="LogoNotes" />
