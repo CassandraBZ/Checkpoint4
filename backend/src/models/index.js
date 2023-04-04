@@ -34,17 +34,20 @@ const UserManager = require("./UserManager");
 const AvatarManager = require("./AvatarManager");
 const NoteManager = require("./NoteManager");
 const ColorManager = require("./ColorManager");
+const CategoryManager = require("./CategoryManager");
 
 models.item = new ItemManager();
 models.user = new UserManager();
 models.avatar = new AvatarManager();
 models.note = new NoteManager();
 models.color = new ColorManager();
+models.category = new CategoryManager();
 
 models.user.setDatabase(pool);
 models.avatar.setDatabase(pool);
 models.note.setDatabase(pool);
 models.color.setDatabase(pool);
+models.category.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

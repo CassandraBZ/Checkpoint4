@@ -33,4 +33,12 @@ router.post("/notes", auth, noteControllers.add);
 router.put("/notes/:id", auth, noteControllers.edit);
 router.delete("/notes/:id", auth, noteControllers.destroy);
 
+const categoryControllers = require("./controllers/categoryControllers");
+
+router.get("/categories", auth, categoryControllers.browse);
+router.get("/categories/:id", auth, categoryControllers.read);
+router.post("/categories", auth, categoryControllers.add);
+router.put("/categories/:id", auth, categoryControllers.edit);
+router.delete("/categories/:id", auth, categoryControllers.destroy);
+
 module.exports = router;

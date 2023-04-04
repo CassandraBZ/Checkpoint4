@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
-import expressAPI from "../services/expressAPI";
-import { useCurrentUserContext } from "../contexts/CurrentUserContext";
+import expressAPI from "../../services/expressAPI";
+import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
+
+import bullets from "../../assets/images/bullets.svg";
 
 import Note from "./Note";
 
@@ -19,7 +21,15 @@ function NotesList() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-row">
+      {notes.length === 0 && (
+        <div className="flex flex-col justify-center items-center text-xl">
+          <img src={bullets} alt="bullet-color" className="w-64 mb-6" />
+          <h1 className="font-lilita text-main text-center w-1/2 mb-6">
+            Vous n'avez pas encore de note, créez en une !
+          </h1>
+        </div>
+      )}
       {notes.map((note) => (
         <Note
           key={note.id}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import expressAPI from "../services/expressAPI";
+import expressAPI from "../../services/expressAPI";
 
 function Note({ title, content, colorId }) {
   const [color, setColor] = useState();
@@ -16,10 +16,10 @@ function Note({ title, content, colorId }) {
   }, []);
 
   return (
-    <div>
+    <div className="flex justify-center">
       {color && (
         <div
-          className="mx-5 rounded-r-lg rounded-tl-lg py-4 px-6 text-main text-sm max-w-[45%]"
+          className="mx-4 my-4 rounded-r-lg rounded-tl-lg py-4 px-6 text-main text-sm max-w-[90%]"
           style={{ backgroundColor: color.name }}
         >
           <h2 className="font-semibold mb-3">{title}</h2>

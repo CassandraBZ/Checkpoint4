@@ -1,15 +1,8 @@
 const AbstractManager = require("./AbstractManager");
 
-class NoteManager extends AbstractManager {
+class CategoryManager extends AbstractManager {
   constructor() {
-    super({ table: "note" });
-  }
-
-  findByUserId(userId) {
-    return this.database.query(
-      `select * from  ${this.table} where user_id = ?`,
-      [userId]
-    );
+    super({ table: "category" });
   }
 
   find(id) {
@@ -29,13 +22,6 @@ class NoteManager extends AbstractManager {
     );
   }
 
-  insertCategory(categoryId, noteId) {
-    return this.database.query(
-      `insert into category_has_note (category_id, note_id) values (?, ?)`,
-      [categoryId, noteId]
-    );
-  }
-
   update(note) {
     return this.database.query(
       `update ${this.table} set note_title = ?, content = ?, color_id= ? where id = ?`,
@@ -48,4 +34,4 @@ class NoteManager extends AbstractManager {
   }
 }
 
-module.exports = NoteManager;
+module.exports = CategoryManager;
