@@ -4,7 +4,6 @@ import { useCurrentUserContext } from "../contexts/CurrentUserContext";
 
 import expressAPI from "../services/expressAPI";
 import Categories from "../components/Category/CategoriesTag";
-import SearchBar from "../components/Accueil/SearchBar";
 import RoundButton from "../components/Buttons/RoundButton";
 
 import create from "../assets/icons/addition_white.svg";
@@ -30,8 +29,7 @@ function Accueil() {
   };
 
   return (
-    <div>
-      <SearchBar />
+    <div className="flex flex-col items-center max-w-[1000px] m-auto">
       <Categories />
       <NotesList notes={notes} />
       <div className="flex flex-col justify-center items-center mt-8">

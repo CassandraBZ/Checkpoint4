@@ -56,20 +56,20 @@ function RegistrationForm() {
   }, []);
 
   return (
-    <div>
-      <div className="">
+    <div className="my-8 flex flex-col max-w-[450px] mx-8 sm:m-auto">
+      <div className="flex flex-col m-auto">
         <h1 className="font-lilita text-main text-3xl">
           Inscrivez vous sur notes
         </h1>
-        <img src={bullets} alt="bullet-color" />
+        <img className="mt-4 h-12" src={bullets} alt="bullet-color" />
       </div>
-      <div className="flex flex-wrap flex-row gap-2 m-10">
+      <div className="flex flex-wrap flex-row gap-2 my-10 mx-10 md:mx-auto md:max-w-[200px]">
         {avatars.map((avatar) => (
           <img
             key={avatar.id}
             className={`w-14 h-14 ${
               selectedAvatar && selectedAvatar.id === avatar.id
-                ? "border-2"
+                ? "border-4 rounded-full border-main"
                 : ""
             }`}
             src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/${
@@ -113,7 +113,7 @@ function RegistrationForm() {
             handleChange={handleEmailChange}
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-8">
           <label htmlFor="password" className="text-grey1 font-semibold mb-1">
             Mot de passe
           </label>
@@ -124,7 +124,9 @@ function RegistrationForm() {
             handleChange={handlePasswordChange}
           />
         </div>
-        <MainButton handleClick={handleForm}>Me connecter</MainButton>
+        <div className="flex justify-center items-center">
+          <MainButton handleClick={handleForm}>M'enregistrer</MainButton>
+        </div>
       </form>
     </div>
   );

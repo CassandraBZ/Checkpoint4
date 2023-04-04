@@ -2,7 +2,7 @@ import FormNote from "../components/Notes/FormNote";
 
 function NoteCreation() {
   return (
-    <div>
+    <div className="max-w-[700px] md:m-auto ">
       <FormNote />
     </div>
   );

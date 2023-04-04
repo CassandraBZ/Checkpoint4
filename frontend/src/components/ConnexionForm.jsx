@@ -38,14 +38,14 @@ function ConnexionForm() {
   };
 
   return (
-    <div>
-      <div className="">
+    <div className="my-8 flex flex-col max-w-[450px] mx-8 md:m-auto">
+      <div className="flex flex-col m-auto">
         <h1 className="font-lilita text-main text-3xl">
           Connectez vous sur notes
         </h1>
-        <img src={bullets} alt="bullet-color" />
+        <img className="mt-4 mb-8 h-12" src={bullets} alt="bullet-color" />
       </div>
-      <div className="flex flex-row text-left">
+      <div className="flex flex-row m-auto">
         <p className="text-grey1 text-s pr-4">Je n'ai pas de compte ?</p>
         <Link
           to="/Registration"
@@ -66,7 +66,7 @@ function ConnexionForm() {
             handleChange={handleEmailChange}
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-8">
           <label htmlFor="password" className="text-grey1 font-semibold mb-1">
             Mot de passe
           </label>
@@ -77,7 +77,9 @@ function ConnexionForm() {
             handleChange={handlePasswordChange}
           />
         </div>
-        <MainButton handleClick={handleSubmit}>Me connecter</MainButton>
+        <div className="flex justify-center items-center">
+          <MainButton handleClick={handleSubmit}>Me connecter</MainButton>
+        </div>
       </form>
     </div>
   );

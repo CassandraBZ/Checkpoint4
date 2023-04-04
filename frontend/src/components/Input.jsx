@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 function Input({ handleChange, value, inputType, inputId }) {
   return (
     <input
-      className=" border-2 border-main-light h-10 rounded-full mb-2"
+      className="px-5 border-2 border-main-light h-10 rounded-full mb-2"
       type={inputType}
       id={inputId}
       value={value}

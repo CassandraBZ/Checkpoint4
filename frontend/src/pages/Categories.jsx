@@ -34,7 +34,7 @@ function Categories() {
   };
 
   return (
-    <div className="mx-8">
+    <div className="max-w-[1000px] justify-center mx-8 lg:mx-auto">
       <button
         type="button"
         onClick={() => navigate("/Accueil")}
@@ -56,7 +56,7 @@ function Categories() {
         </div>
       </div>
       {isCreateMode && (
-        <div>
+        <div className="md:flex md:justify-center md:items-center">
           <input
             value={title}
             onChange={handleTitleChange}

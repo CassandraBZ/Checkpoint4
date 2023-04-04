@@ -169,7 +169,9 @@ function FormNote({ isEditMode, note, color, category }) {
                 type="button"
                 key={c.id}
                 className={`h-8 w-8 rounded-full ml-2 ${
-                  colorSelected && colorSelected.id === c.id ? "border-2" : ""
+                  colorSelected && colorSelected.id === c.id
+                    ? "border-2 border-main"
+                    : ""
                 }`}
                 style={{ backgroundColor: c.name }}
                 onClick={() => handleColorSelectedChange(c)}
@@ -179,13 +181,14 @@ function FormNote({ isEditMode, note, color, category }) {
             ))}
         </div>
       </div>
-      <MainButton handleClick={handleSubmit}>
-        {" "}
-        {isEditMode ? "Enregistrer les modifications" : "Enregistrer la note"}
-      </MainButton>
-      <SecondaryButton handleClick={() => navigate("/Accueil")}>
-        {isEditMode ? "Ne pas enregistrer" : "Annuler"}
-      </SecondaryButton>
+      <div className="flex flex-col items-center m-auto max-w-[400px]">
+        <MainButton handleClick={handleSubmit}>
+          {isEditMode ? "Enregistrer les modifications" : "Enregistrer la note"}
+        </MainButton>
+        <SecondaryButton handleClick={() => navigate("/Accueil")}>
+          {isEditMode ? "Ne pas enregistrer" : "Annuler"}
+        </SecondaryButton>
+      </div>
     </div>
   );
 }
