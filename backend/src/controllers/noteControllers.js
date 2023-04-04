@@ -24,6 +24,20 @@ const readFromUser = (req, res) => {
     });
 };
 
+const readFromCategory = (req, res) => {
+  const { userId, categoryId } = req.params;
+
+  models.note
+    .findByCategory(userId, categoryId)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const read = (req, res) => {
   models.note
     .find(req.params.id)
@@ -40,24 +54,24 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
-  const note = req.body;
+const edit = async (req, res) => {
+  try {
+    const note = req.body;
 
-  note.id = parseInt(req.params.id, 10);
+    note.id = parseInt(req.params.id, 10);
 
-  models.note
-    .update(note)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+    await models.note.updateCategory(note.category_id, note.id);
+    const [result] = await models.note.update(note);
+
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 const add = async (req, res) => {
@@ -65,6 +79,9 @@ const add = async (req, res) => {
     const note = req.body;
 
     const [noteResult] = await models.note.insert(note);
+    if (note.category_id !== "1") {
+      await models.note.insertCategory("1", noteResult.insertId);
+    }
     await models.note.insertCategory(note.category_id, noteResult.insertId);
 
     res.location(`/notes/${noteResult.insertId}`).sendStatus(201);
@@ -98,4 +115,5 @@ module.exports = {
   add,
   destroy,
   readFromUser,
+  readFromCategory,
 };

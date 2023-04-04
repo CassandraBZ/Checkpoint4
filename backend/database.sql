@@ -62,6 +62,7 @@ LOCK TABLES `category` WRITE;
 INSERT INTO `category` VALUES (1,'Tout');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
+INSERT INTO `checkpoint`.`category` (`id`, `category_title`) VALUES ('2', 'A faire');
 
 --
 -- Table structure for table `category_has_note`

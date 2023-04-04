@@ -18,6 +18,16 @@ class NoteManager extends AbstractManager {
     ]);
   }
 
+  findByCategory(userId, categoryId) {
+    return this.database.query(
+      `SELECT note.*, category_has_note.*
+      FROM note
+      INNER JOIN category_has_note on category_has_note.note_id = note.id
+      WHERE user_id = ? AND category_id = ?`,
+      [userId, categoryId]
+    );
+  }
+
   findAll() {
     return this.database.query(`select * from  ${this.table}`);
   }
@@ -40,6 +50,13 @@ class NoteManager extends AbstractManager {
     return this.database.query(
       `update ${this.table} set note_title = ?, content = ?, color_id= ? where id = ?`,
       [note.note_title, note.content, note.color_id, note.id]
+    );
+  }
+
+  updateCategory(categoryId, noteId) {
+    return this.database.query(
+      `UPDATE category_has_note SET category_id = ?  WHERE note_id = ? AND category_id <> 1`,
+      [categoryId, noteId]
     );
   }
 

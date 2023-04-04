@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
-
-import expressAPI from "../../services/expressAPI";
-import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
+import PropTypes from "prop-types";
 
 import bullets from "../../assets/images/bullets.svg";
-
 import Note from "./Note";
 
-function NotesList() {
-  const [notes, setNotes] = useState([]);
-  const { user } = useCurrentUserContext();
-
-  useEffect(() => {
-    expressAPI
-      .get(`/notes/user/${user.id}`)
-      .then((res) => setNotes(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
-
+function NotesList({ notes }) {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row flex-wrap gap-4 my-4 mx-8 justify-center">
       {notes.length === 0 && (
         <div className="flex flex-col justify-center items-center text-xl">
           <img src={bullets} alt="bullet-color" className="w-64 mb-6" />
@@ -42,5 +26,22 @@ function NotesList() {
     </div>
   );
 }
+
+NotesList.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  notes: PropTypes.array({
+    id: PropTypes.number,
+    note_title: PropTypes.string,
+    content: PropTypes.string,
+    user_id: PropTypes.number,
+    color_id: PropTypes.number,
+    category_id: PropTypes.number,
+    note_id: PropTypes.number,
+  }),
+};
+
+NotesList.defaultProps = {
+  notes: [],
+};
 
 export default NotesList;

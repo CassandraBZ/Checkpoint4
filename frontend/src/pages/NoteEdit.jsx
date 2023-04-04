@@ -28,7 +28,7 @@ function NoteEdit() {
   }, [note]);
 
   return (
-    <div>
+    <div className="max-w-[700px] md:m-auto ">
       {note && (
         <FormNote
           isEditMode

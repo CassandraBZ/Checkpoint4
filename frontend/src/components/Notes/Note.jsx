@@ -22,7 +22,7 @@ function Note({ title, content, colorId, noteId }) {
       {color && (
         <div
           onClick={() => navigate(`/edit-note/${noteId}`)}
-          className="mx-4 my-4 rounded-r-lg rounded-tl-lg py-4 px-6 text-main text-sm max-w-[90%]"
+          className="rounded-r-lg rounded-tl-lg py-4 px-6 text-main text-sm max-w-[40vw] md:max-w-[15vw] h-fit"
           style={{ backgroundColor: color.name }}
           aria-hidden="true"
         >
