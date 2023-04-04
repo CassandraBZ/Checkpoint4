@@ -79,8 +79,9 @@ const add = async (req, res) => {
     const note = req.body;
 
     const [noteResult] = await models.note.insert(note);
-    if (note.category_id !== "1") {
-      await models.note.insertCategory("1", noteResult.insertId);
+
+    if (note.category_id !== 1) {
+      await models.note.insertCategory(1, noteResult.insertId);
     }
     await models.note.insertCategory(note.category_id, noteResult.insertId);
 

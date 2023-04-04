@@ -24,12 +24,13 @@ function RightNav() {
   };
 
   useEffect(() => {
-    expressAPI
-      .get(`/avatars/${user.avatar_id}`)
-      .then((res) => setAvatar(res.data))
-      .catch((err) => {
-        console.error(err);
-      });
+    if (user)
+      expressAPI
+        .get(`/avatars/${user.avatar_id}`)
+        .then((res) => setAvatar(res.data))
+        .catch((err) => {
+          console.error(err);
+        });
   }, [user]);
 
   return (
