@@ -42,6 +42,7 @@ const categoryControllers = require("./controllers/categoryControllers");
 
 router.get("/categories", auth, categoryControllers.browse);
 router.get("/categories/:id", auth, categoryControllers.read);
+router.get("/categories/user/:userId", auth, categoryControllers.readFromUser);
 router.post("/categories", auth, categoryControllers.add);
 router.put("/categories/:id", auth, categoryControllers.edit);
 router.delete("/categories/:id", auth, categoryControllers.destroy);

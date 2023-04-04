@@ -28,6 +28,18 @@ const read = (req, res) => {
     });
 };
 
+const readFromUser = (req, res) => {
+  models.category
+    .findFromUser(req.params.userId)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const edit = (req, res) => {
   const category = req.body;
 
@@ -81,6 +93,7 @@ const destroy = (req, res) => {
 module.exports = {
   browse,
   read,
+  readFromUser,
   edit,
   add,
   destroy,

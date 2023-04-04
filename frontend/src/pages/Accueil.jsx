@@ -21,7 +21,7 @@ function Accueil() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [user]);
 
   const handleCreateNote = (e) => {
     e.preventDefault();

@@ -11,6 +11,18 @@ class CategoryManager extends AbstractManager {
     ]);
   }
 
+  findFromUser(id) {
+    return this.database.query(
+      `SELECT category.* FROM ${this.table}
+    INNER JOIN category_has_note ON category_has_note.category_id = category.id
+    INNER JOIN note ON note.id = category_has_note.note_id
+    WHERE note.user_id = ?
+    GROUP BY category.id
+    ORDER BY category.id`,
+      [id]
+    );
+  }
+
   findAll() {
     return this.database.query(`select * from  ${this.table}`);
   }

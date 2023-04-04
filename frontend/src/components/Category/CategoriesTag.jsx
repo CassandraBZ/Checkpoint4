@@ -7,14 +7,16 @@ import Tags from "../Buttons/Tags";
 
 import expressAPI from "../../services/expressAPI";
 import { useCategoryContext } from "../../contexts/CategoryContext";
+import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function CategoriesTag() {
+  const { user } = useCurrentUserContext();
   const navigate = useNavigate();
   const { categories, setCategories, activeCategories, setActiveCategories } =
     useCategoryContext();
   useEffect(() => {
     expressAPI
-      .get(`/categories`)
+      .get(`/categories/user/${user.id}`)
       .then((res) => {
         setCategories(res.data);
         localStorage.setItem("categories", JSON.stringify(res.data));
@@ -31,7 +33,7 @@ function CategoriesTag() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [user]);
 
   return (
     <div className="flex m-6">

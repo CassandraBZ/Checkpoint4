@@ -3,14 +3,16 @@ import { useEffect } from "react";
 import expressAPI from "../../services/expressAPI";
 import Category from "./Category";
 import { useCategoryContext } from "../../contexts/CategoryContext";
+import { useCurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function CategoriesCard() {
+  const { user } = useCurrentUserContext();
   const { categories, setCategories, activeCategories, setActiveCategories } =
     useCategoryContext();
 
   useEffect(() => {
     expressAPI
-      .get(`categories`)
+      .get(`categories/user/${user.id}`)
       .then((res) => {
         setCategories(res.data);
         localStorage.setItem("categories", JSON.stringify(res.data));
