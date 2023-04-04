@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Categories from "../components/Accueil/CategoriesTag";
+import Categories from "../components/Category/CategoriesTag";
 import SearchBar from "../components/Accueil/SearchBar";
 import RoundButton from "../components/Buttons/RoundButton";
 
