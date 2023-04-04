@@ -24,6 +24,20 @@ const readFromUser = (req, res) => {
     });
 };
 
+const readFromCategory = (req, res) => {
+  const { userId, categoryId } = req.params;
+
+  models.note
+    .findByCategory(userId, categoryId)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const read = (req, res) => {
   models.note
     .find(req.params.id)
@@ -65,6 +79,9 @@ const add = async (req, res) => {
     const note = req.body;
 
     const [noteResult] = await models.note.insert(note);
+    if (note.category_id !== "1") {
+      await models.note.insertCategory("1", noteResult.insertId);
+    }
     await models.note.insertCategory(note.category_id, noteResult.insertId);
 
     res.location(`/notes/${noteResult.insertId}`).sendStatus(201);
@@ -98,4 +115,5 @@ module.exports = {
   add,
   destroy,
   readFromUser,
+  readFromCategory,
 };

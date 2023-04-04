@@ -15,4 +15,12 @@
   #root {
     @apply h-full flex flex-col font-asap;
   }
+
+  .activeTag {
+    @apply bg-main-light text-white;
+  }
+
+  .inactiveTag {
+    @apply text-main-light border-2 border-main-light;
+  }
 }

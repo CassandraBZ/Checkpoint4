@@ -29,6 +29,11 @@ const noteControllers = require("./controllers/noteControllers");
 router.get("/notes", auth, noteControllers.browse);
 router.get("/notes/:id", auth, noteControllers.read);
 router.get("/notes/user/:userId", auth, noteControllers.readFromUser);
+router.get(
+  "/notes/user/:userId/category/:categoryId",
+  auth,
+  noteControllers.readFromCategory
+);
 router.post("/notes", auth, noteControllers.add);
 router.put("/notes/:id", auth, noteControllers.edit);
 router.delete("/notes/:id", auth, noteControllers.destroy);

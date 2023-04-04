@@ -21,13 +21,13 @@ function FormNote({ isEditMode, note, color, category }) {
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
   const [colorSelected, setColorSelected] = useState(color);
-  const [categorySelected, setCategorySelected] = useState(category);
+  const [categoryIdSelected, setCategoryIdSelected] = useState(category.id);
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (e) => setContent(e.target.value);
   const handleColorSelectedChange = (c) => setColorSelected(c);
   const handleCategorySelectedChange = (e) =>
-    setCategorySelected(e.target.value);
+    setCategoryIdSelected(e.target.value);
 
   const createNote = (currentNote) => {
     if (title && content) {
@@ -61,13 +61,15 @@ function FormNote({ isEditMode, note, color, category }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const currentNote = {
       note_title: title,
       content,
       user_id: user.id,
       color_id: colorSelected.id,
-      category_id: categorySelected.id,
+      category_id: categoryIdSelected,
     };
     if (isEditMode) {
       editNote(currentNote);
@@ -118,10 +120,13 @@ function FormNote({ isEditMode, note, color, category }) {
         </h1>
         <div className="flex flex-row">
           <p className="font-semibold text-gray2 pr-4">Catégories</p>
-          <select onChange={handleCategorySelectedChange}>
+          <select
+            value={categoryIdSelected}
+            onChange={handleCategorySelectedChange}
+          >
             {categories &&
               categories.map((c) => (
-                <option key={c.id} value={c}>
+                <option key={c.id} value={c.id}>
                   {c.category_title}
                 </option>
               ))}

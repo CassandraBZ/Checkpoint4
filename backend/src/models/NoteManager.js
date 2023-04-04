@@ -18,6 +18,16 @@ class NoteManager extends AbstractManager {
     ]);
   }
 
+  findByCategory(userId, categoryId) {
+    return this.database.query(
+      `SELECT note.*, category_has_note.*
+      FROM note
+      INNER JOIN category_has_note on category_has_note.note_id = note.id
+      WHERE user_id = ? AND category_id = ?`,
+      [userId, categoryId]
+    );
+  }
+
   findAll() {
     return this.database.query(`select * from  ${this.table}`);
   }
